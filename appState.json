@@ -16,13 +16,13 @@
       "79e75fc6-4c2e-4252-b08f-0f76c3b8874e": {
         "id": "79e75fc6-4c2e-4252-b08f-0f76c3b8874e",
         "parent": "5c6654a4-5ceb-48b4-bb8d-51d75e3b6b13",
-        "name": "lambda.js",
+        "name": "SMSGateway.js",
         "type": "LAMBDA_FILE",
         "isDirectory": false,
         "children": [],
         "isRemovable": true,
-        "filePath": "SMSGateway/lambda.js",
-        "code": "let AWS = require('aws-sdk');\nconst sns = new AWS.SNS();\n\nexports.handler = function (event, context, callback) {\n\n    let receiver = event['receiver'];\n    let sender = event['sender'];\n    let message = event['message'];\n    let mtype = event['mtype'];\n\n    console.log(\"Sending message\", message, \"to receiver\", receiver);\n\n    sns.publish({\n        Message: message,\n        MessageAttributes: {\n            'AWS.SNS.SMS.SMSType': {\n                DataType: 'String',\n                StringValue: mtype\n            },\n            'AWS.SNS.SMS.SenderID': {\n                DataType: 'String',\n                StringValue: sender\n            }\n        },\n        PhoneNumber: receiver\n    }).promise()\n        .then(data => {\n            console.log(\"Sent message to\", receiver);\n            callback(null, data);\n        })\n        .catch(err => {\n            console.log(\"Sending failed\", err);\n            callback(err);\n        });\n\n}",
+        "filePath": "SMSGateway/SMSGateway.js",
+        "code": "let AWS = require('aws-sdk');\nconst sns = new AWS.SNS();\n\nexports.handler = function (event, context, callback) {\n\n    let receiver = event['receiver'];\n    let sender = event['sender'];\n    let message = event['message'];\n    let mtype = event['mtype'];\n\n    console.log(\"Sending message\", message, \"to receiver\", receiver);\n\n    sns.publish({\n        Message: message,\n        MessageAttributes: {\n            'AWS.SNS.SMS.SMSType': {\n                DataType: 'String',\n                StringValue: mtype\n            },\n            'AWS.SNS.SMS.SenderID': {\n                DataType: 'String',\n                StringValue: sender\n            }\n        },\n        PhoneNumber: receiver\n    }).promise()\n        .then(data => {\n            console.log(\"Sent message to\", receiver);\n            callback(null, data);\n        })\n        .catch(err => {\n            console.log(\"Sending failed\", err);\n            callback(err);\n        });\n\n}\n\n",
         "triggers": [
           {
             "resourceName": "apigusEast1SMSGatewaysendSMSpost",
@@ -33,10 +33,20 @@
           "runtime": "nodejs8.10",
           "timeout": 60,
           "memory": 128
+        },
+        "testCases": {
+          "e5d2215d-803e-4ad7-8970-21c35eddc9f6": {
+            "id": "e5d2215d-803e-4ad7-8970-21c35eddc9f6",
+            "name": "Unnamed event",
+            "functionId": "79e75fc6-4c2e-4252-b08f-0f76c3b8874e",
+            "event": "{\n    \"key1\": \"value1\",\n    \"key2\": \"value2\",\n    \"key3\": \"value3\"\n}"
+          }
         }
       }
     },
-    "deletedFiles": [],
+    "deletedFiles": [
+      "SMSGateway/lambda.js"
+    ],
     "rootNode": "5c6654a4-5ceb-48b4-bb8d-51d75e3b6b13",
     "openFiles": [
       "79e75fc6-4c2e-4252-b08f-0f76c3b8874e"
@@ -114,7 +124,7 @@
     "projectVersion": "1.0.0",
     "projectRegion": "us-east-1",
     "platform": "AWS",
-    "lastSave": 1543812938026
+    "lastSave": 1543814465837
   },
   "VCS_STATE": {
     "provider": "GitHub",
