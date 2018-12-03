@@ -66,7 +66,7 @@
           "proxyIntegration": false,
           "enableCORS": false,
           "stageMode": 0,
-          "stageName": "prod"
+          "stageName": "v1"
         },
         "globallyEditable": false
       },
@@ -122,7 +122,7 @@
     "projectVersion": "1.0.0",
     "projectRegion": "us-east-1",
     "platform": "AWS",
-    "lastSave": 1543815147181
+    "lastSave": 1543815882274
   },
   "VCS_STATE": {
     "provider": "GitHub",
