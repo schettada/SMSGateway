@@ -6,15 +6,16 @@ exports.handler = function (event, context, callback) {
     let receiver = event['receiver'];
     let sender = event['sender'];
     let message = event['message'];
+    let mtype = event['mtype'];
 
     console.log("Sending message", message, "to receiver", receiver);
-    
+
     sns.publish({
         Message: message,
         MessageAttributes: {
             'AWS.SNS.SMS.SMSType': {
                 DataType: 'String',
-                StringValue: 'Transactional'
+                StringValue: mtype
             },
             'AWS.SNS.SMS.SenderID': {
                 DataType: 'String',
