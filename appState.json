@@ -44,9 +44,7 @@
         }
       }
     },
-    "deletedFiles": [
-      "SMSGateway/lambda.js"
-    ],
+    "deletedFiles": [],
     "rootNode": "5c6654a4-5ceb-48b4-bb8d-51d75e3b6b13",
     "openFiles": [
       "79e75fc6-4c2e-4252-b08f-0f76c3b8874e"
@@ -124,7 +122,7 @@
     "projectVersion": "1.0.0",
     "projectRegion": "us-east-1",
     "platform": "AWS",
-    "lastSave": 1543814465837
+    "lastSave": 1543815147181
   },
   "VCS_STATE": {
     "provider": "GitHub",
